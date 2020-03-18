@@ -70,11 +70,11 @@ public:
         if (m1.Size1 < m2.Size1) minimum = m1.Size1;
         else minimum = m2.Size1;
         int i = 0;
-        do {
+        while (i < minimum){
             if (m1.Buffer1[i] < m2.Buffer1[i]) return false;
             if (m1.Buffer1[i] > m2.Buffer1[i]) return true;
             i++;
-        } while ((m1.Buffer1[i] == m2.Buffer1[i]) && (i < minimum));
+        }
         return m1.Size1 > m2.Size1;
     };
     friend bool operator >= (Stack<T> &m1, Stack<T> &m2)
@@ -88,7 +88,7 @@ public:
         if (m1.Size1 < m2.Size1) minimum = m1.Size1;
         else minimum = m2.Size1;
         int i = 0;
-        do {
+        while (i < minimum){
             if (m1.Buffer1[i] > m2.Buffer1[i]) return false;
             if (m1.Buffer1[i] < m2.Buffer1[i]) return true;
             i++;
@@ -125,8 +125,7 @@ template <typename T>
 
 void  Stack<T>::push(T a)
 {
-    T * k;
-    k = new T[Size1 + 1];
+    T * k = new T[Size1 + 1];
     for (int i = 0; i < Size1; i++)
         k[i] = Buffer1[i];
     k[Size1] = a;
@@ -138,8 +137,7 @@ template <typename T>
 void Stack<T>::pop()
 {
     if (Size1 > 0) {
-        T * k;
-        k = new T[Size1 - 1];
+        T * k = new T[Size1 - 1];
         for (int i = 0; i < Size1 - 1; i++)
             k[i] = Buffer1[i];
         delete[] Buffer1;

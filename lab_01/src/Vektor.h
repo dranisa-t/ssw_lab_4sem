@@ -71,11 +71,11 @@ public:
         if (m1.Size < m2.Size) minimum = m1.Size;
         else minimum = m2.Size;
         int i = 0;
-        do {
+        while (i < minimum){
             if (m1.Buffer[i] < m2.Buffer[i]) return false;
             if (m1.Buffer[i] > m2.Buffer[i]) return true;
             i++;
-        } while ((m1.Buffer[i] == m2.Buffer[i]) && (i < minimum));
+        }
 
         return m1.Size > m2.Size;
 
@@ -86,11 +86,11 @@ public:
         if (m1.Size < m2.Size) minimum = m1.Size;
         else minimum = m2.Size;
         int i = 0;
-        do {
+        while (i < minimum){
             if (m1.Buffer[i] > m2.Buffer[i]) return false;
             if (m1.Buffer[i] < m2.Buffer[i]) return true;
             i++;
-        } while ((m1.Buffer[i] == m2.Buffer[i]) && (i < minimum));
+        }
 
         return m1.Size < m2.Size;
     };
@@ -124,8 +124,7 @@ void Vektor<T>::display() {
 
 template <typename T>
 void  Vektor<T>::push(T a) {
-    T * k;
-    k = new T[Size + 1];
+    T * k = new T[Size + 1];
     for (int i = 0; i < Size; i++)
         k[i] = Buffer[i];
     k[Size] = a;
@@ -156,7 +155,7 @@ T  Vektor<T>::at(int i) {
 template <typename T>
 T Vektor<T>::peek() {
     if (Size > 0) {
-        return Buffer[Size-1];
+        return Buffer[0];
     }
     else throw std::runtime_error("vektor is empty");
 };
