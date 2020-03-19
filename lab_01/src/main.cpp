@@ -40,6 +40,50 @@ int main(int charc, char** argv)
     cout << "\n2 vektor\n";
     vektor1.display();
 
+    steck.push(30);
+    steck.push(31);
+    steck.push(32);
+    steck.push(33);
+    steck.push(34);
+    steck1.push(40);
+    steck1.push(50);
+    steck1.push(41);
+    steck1.push(10);
+    steck1.push(48);
+    steck1.push(49);
+
+    cout << "\n1 stack\n";
+    steck.display();
+    cout << "\n2 stack\n";
+    steck1.display();
+    swap(steck, steck1);
+    cout << "\n1 stack\n";
+    steck.display();
+    cout << "\n2 stack\n";
+    steck1.display();
+
+    otshered.push(18);
+    otshered.push(19);
+    otshered.push(20);
+    otshered.push(24);
+    otshered.push(25);
+    otshered.push(26);
+    otshered1.push(17);
+    otshered1.push(16);
+    otshered1.push(15);
+    otshered1.push(14);
+    otshered.push(13);
+
+    cout << "\n1 queue\n";
+    otshered.display();
+    cout << "\n2 queue\n";
+    otshered1.display();
+    swap(otshered, otshered1);
+    cout << "\n1 queue\n";
+    otshered.display();
+    cout << "\n2 queue\n";
+    otshered1.display();
+
     cout << "\nSravnenie vektor\nVstavka element\n";
     auto start = std::chrono::high_resolution_clock::now();
     for (int i = 0; i < 10000; i++)

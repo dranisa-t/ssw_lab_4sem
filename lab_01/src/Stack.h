@@ -53,10 +53,11 @@ public:
         else
         {
             int i = 0;
-            do {
+            int m = m1.SIze1;
+            while (i < m){
                 if (m1.Buffer1[i] != m2.Buffer1[i]) return false;
                 i++;
-            } while ((m1.Buffer1[i] == m2.Buffer1[i]) && (i < m1.Size1));
+            }
             return  true;
         }
     };
@@ -92,8 +93,7 @@ public:
             if (m1.Buffer1[i] > m2.Buffer1[i]) return false;
             if (m1.Buffer1[i] < m2.Buffer1[i]) return true;
             i++;
-        } while ((m1.Buffer1[i] == m2.Buffer1[i]) && (i < minimum));
-
+        }
         return m1.Size < m2.Size;
     };
 
