@@ -38,11 +38,9 @@ public:
             for (int i = 0; i < m2.Size; i++)
                 m1.Buffer[i] = m2.Buffer[i];
             delete[] m2.Buffer;
-            m2.Buffer = new T[m1.Size];
             m2.Buffer = a;
         }
-        int l;
-        l = m1.Size;
+        int l = m1.Size;
         m1.Size = m2.Size;
         m2.Size = l;
     };

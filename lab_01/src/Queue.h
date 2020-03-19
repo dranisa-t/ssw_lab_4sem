@@ -39,7 +39,6 @@ public:
             for (int i = 0; i < m2.Size; i++)
                 m1.Buffer[i] = m2.Buffer[i];
             delete[] m2.Buffer;
-            m2.Buffer = new T[m1.Size];
             m2.Buffer = a;
         }
         int l;
@@ -79,7 +78,6 @@ public:
             if (m1.Buffer[i] > m2.Buffer[i]) return true;
             i++;
         }
-
         return m1.Size > m2.Size;
 
     };
