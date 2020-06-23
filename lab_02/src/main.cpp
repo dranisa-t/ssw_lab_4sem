@@ -1,26 +1,24 @@
 #include <iostream>
-#include "generator.h"
+#include "Simply_List.h"
+#include "Doubly_List.h"
+#include "Ring_Buffer.h"
 using namespace std;
 
+int main() {
+   	Ring_Buffer<int> buffer1(5), buffer2(5), buffer(10);
+	buffer1.push_back(0);
+	buffer1.push_back(3);
+	buffer1.push_back(5);
+	buffer1.screen();
 
+	buffer2.push_back(6);
+	buffer2.push_back(8);
+	buffer2.push_back(18);
+	buffer2.screen();
 
-int main(int argc, char *argv[]) {
-    try {
-    	auto t1 = generate<int>(234); // t1 is std::vector
-    	cout << "<TEST>" << endl;
-    	cout << "\t" << t1[0] << " | " << t1.size() <<  endl;
-
-
-    	auto t2 = generate<string>(5);
-    	cout << "<TEST>" << endl;
-    	cout << "\t" << t2[0] << " | " << t2.size() <<  endl;
-
-    	auto t3 = generate<float>(6);
-    	cout << "<TEST>" << endl;
-    	cout << "\t" << t3[0] << " | " << t3.size() << endl;
-    } catch (const std::exception &exp) {
-        cout << exp.what() << endl;
-    }
-
+    buffer.merger(buffer1, buffer2);
+    buffer.screen();
+    cout << "\t" << endl;
     return 0;
 }
+
