@@ -4,20 +4,20 @@
 using namespace std;
 
 
-//template<typename T>
+template <class T>
 class AVLTree
 {
+private:
 	class AVLNode
 	{
-		friend class AVLTree;
-	private:
+	public:
 		int key_;
 		int height_;
 
 		AVLNode* left_node_;
 		AVLNode* right_node_;
 
-	public:
+
 		AVLNode(int key, AVLNode* left_node = nullptr, AVLNode* right_node = nullptr)
 		{
 			key_ = key;
@@ -25,13 +25,8 @@ class AVLTree
 			right_node_ = right_node;
 			height_ = 0;
 		}
-		~AVLNode()
-		{
-
-		}
-		//int Size{ 0 };
+		~AVLNode() = default;
 	};
-private:
 	AVLNode* root_;
 	int Size{ 0 };
 
@@ -70,7 +65,7 @@ private:
 		return (node != nullptr) ? node->height_ + 1 : 0;
 	}
 
-	AVLNode* insert_(int key, AVLNode* node)
+	AVLNode* insert_(T key, AVLNode* node)
 	{
 		if (node == nullptr)
 		{
@@ -192,28 +187,20 @@ private:
 				return node = left_rotation(node);
 			}
 		}
-
+		Size++;
 		return node;
 	}
-
-	AVLNode* Find(int key_) {// поиск элемента в структуре
-		AVLNode* key = root_;
-		while (key != nullptr) {
-			if (key->key_ == key_)
-				return key;
-			if (key->key_ > key_)
-				key = key->left_node_;
-			else key = key->right_node_;
+	void deleteElement(AVLNode* m) {
+		if (m != nullptr) {
+			deleteElement(m->left_node_);
+			deleteElement(m->right_node_);
+			delete m;
+			m = nullptr;
 		}
+		else return;
 	}
-	void inorder(AVLNode* node)
+	void print(AVLNode* node)
 	{
-		/* if (node == NULL)
-			 return;
-		 inorder(node->left_node_);
-		 cout << node->key_ << " ";
-		 inorder(node->right_node_);*/
-
 		if (node == NULL) {
 			cout << ".";
 			return;
@@ -226,7 +213,8 @@ private:
 
 public:
 	vector<int> vis;
-	int count() {
+	int count() 
+	{
 		return Size;
 	}
 	vector<int> path(int d) {
@@ -255,16 +243,7 @@ public:
 
 	~AVLTree()
 	{
-		deleteElement;
-	}
-	void deleteElement(AVLNode* da) {
-		if (da != nullptr) {
-			deleteElement(da->left);
-			deleteElement(da->right);
-			delete da;
-			da = nullptr;
-		}
-		else return;
+		deleteElement(root_);
 	}
 
 	void insert(int key)
@@ -276,9 +255,19 @@ public:
 	{
 		root_ = pop_(key, root_);
 	}
+	AVLNode* Find(int key_) {// поиск элемента в структуре
+		AVLNode* key = root_;
+		while (key != nullptr) {
+			if (key->key_ == key_)
+				return key;
+			if (key->key_ > key_)
+				key = key->left_node_;
+			else key = key->right_node_;
+		}
+	}
 	void display()
 	{
-		inorder(root_);
+		print(root_);
 		cout << endl;
 	}
 
@@ -349,7 +338,7 @@ public:
 
 int main()
 {
-	AVLTree avltree1, avltree2;
+	AVLTree<int> avltree1, avltree2;
 	avltree1.insert(5);
 	avltree1.insert(1);
 	avltree1.insert(7);
@@ -361,7 +350,7 @@ int main()
 	avltree1.pop(8);
 	avltree1.display();
 	avltree2.display();
-	avltree1.Find(3);
+	//avltree1.Find(3);
 	return 0;
 }
    
