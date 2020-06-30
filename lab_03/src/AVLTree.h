@@ -60,8 +60,14 @@ private:
 
 	AVLNode* maximum_node_of_tree(AVLNode* node)
 	{
-		if (node->right_node_ == nullptr) return node;
-		else return maximum_node_of_tree(node->right_node_);
+		if (node->right_node_ == nullptr)
+		{
+			return node;
+		}
+		else
+		{
+			return maximum_node_of_tree(node->right_node_);
+		}
 	}
 
 	int sub_tree_height(AVLNode* node)
@@ -222,23 +228,34 @@ public:
 		return Size;
 	}
 
-	vector<int> path(int d) {
-		if (Size == 0)throw std::out_of_range("tree is empty");
+	vector<int> path(int d)
+	{
+		if (Size == 0)
+		{
+			throw std::out_of_range("tree is empty");
+		}
 		vis.clear();
 		int i = 0;
 		AVLNode* element = root_;
-		while (element != nullptr) {
+		while (element != nullptr)
+		{
 			if (d < element->key_)
+			{
 				element = element->left_node_;
+			}
 			else if (d > element->key_)
+			{
 				element = element->right_node_;
-			else {
+			}
+			else 
+			{
 				vis.push_back(i);
 				element = element->right_node_;
 			}
 			i++;
 		}
-		if (vis.empty()) throw std::out_of_range("Tree is haven't this element");
+		if (vis.empty())
+			throw std::out_of_range("Tree is haven't this element");
 		return vis;
 	}
 	AVLTree()
@@ -263,12 +280,20 @@ public:
 	AVLNode* Find(int key_)
 	{
 		AVLNode* key = root_;
-		while (key != nullptr) {
+		while (key != nullptr)
+		{
 			if (key->key_ == key_)
+			{
 				return key;
+			}
 			if (key->key_ > key_)
+			{
 				key = key->left_node_;
-			else key = key->right_node_;
+			}
+			else
+			{
+				key = key->right_node_;
+			}
 		}
 	}
 	void display()
@@ -279,8 +304,10 @@ public:
 
 	bool operator == (AVLNode const& p)
 	{
-		if (this->Size == 0) throw std::out_of_range("Tree is empty");
-		if (this->Size > 0) throw std::out_of_range("Tree is empty");
+		if (this->Size == 0) 
+			throw out_of_range("Tree is empty");
+		if (this->Size > 0) 
+			throw out_of_range("Tree is empty");
 		return ravno(this->root_, this->root_);
 	}
 
@@ -312,23 +339,43 @@ public:
 	bool comp(AVLNode* d1, AVLNode* d2)
 	{
 		if (d1 != nullptr && d2 == nullptr)
+		{
 			return true;
+		}
 		if (d1 == nullptr && d2 != nullptr)
+		{
 			return false;
+		}
 		if (d1 == nullptr && d2 == nullptr)
+		{
 			return false;
+		}
 		bool com = true;
 		if (d1->key_ > d2->key_)
+		{
 			return true;
+		}
 		if (d1->key_ < d2->key_)
+		{
 			return false;
+		}
 		com = (d1->key_ == d2->key_);
 		if (com)
+		{
 			com = comp(d1->left_node_, d2->left_node_);
-		else return false;
+		}
+		else
+		{
+			return false;
+		}
 		if (com)
+		{
 			com = comp(d1->right_node_, d2->right_node_);
-		else return false;
+		}
+		else
+		{
+			return false;
+		}
 		return com;
 
 	}
